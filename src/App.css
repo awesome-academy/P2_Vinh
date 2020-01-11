@@ -350,7 +350,7 @@ a {
   font-weight: bold;
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 55%;
   transform: translate(200%, 253%);
   -webkit-transform: translate(200%, 253%);
   -moz-transform: translate(200%, 253%);
@@ -360,6 +360,7 @@ a {
 
 .navbar {
   background: #000;
+  position: relative;
 }
 .navbar__nav__menu {
   display: flex;
@@ -541,7 +542,6 @@ a {
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
-  height: 47rem;
   overflow: hidden;
   position: relative;
 }
@@ -559,7 +559,6 @@ a {
   align-items: center;
   justify-content: center;
   transition: 0.5s;
-  position: absolute;
 }
 #r1:checked ~ .product__box-pro1 {
   opacity: 1;
