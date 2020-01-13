@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useTranslation, Trans } from "react-i18next";
 import { setMessage } from "../../../actions/message.action";
 import { setUserLogin } from "../../../actions/user.action";
+import { fetchData } from '../../../mixins/fetchData';
 import { closeMessage } from "../../closeMessage";
 import { checkValidateLoginForm } from "../../../mixins/checkValidateForm";
 import low from "lowdb";
@@ -22,13 +23,7 @@ export default function Login({ history }) {
   const bd = "1px solid red";
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      const res = await db.get("users").value();
-
-      setUserData(res);
-    };
-
-    fetchUsers();
+    setUserData(fetchData('users'));
 
     return () => false;
   }, []);
