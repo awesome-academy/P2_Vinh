@@ -1,18 +1,16 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { setMessage } from "../../../actions/message.action";
 import { checkValidateRegisterForm } from "../../../mixins/checkValidateForm";
 import { closeMessage } from "../../closeMessage";
-import low from "lowdb";
-import LocalStorage from "lowdb/adapters/LocalStorage";
-
-const adapter = new LocalStorage("db");
-const db = low(adapter);
+import { fetchData } from '../../../mixins/fetchData';
+import { addData } from "../../../mixins/fetchData";
+import Breadcrumb from '../../Breadcrumb';
 
 export default function Register() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [users, setUsers] = useState({});
   const [firstNameErr, setFirstNameErr] = useState(Boolean);
   const [lastNameErr, setLastNameErr] = useState(Boolean);
@@ -20,8 +18,8 @@ export default function Register() {
   const [passwordErr, setPasswordErr] = useState(Boolean);
   const [passwordAgainErr, setPasswordAgainErr] = useState(Boolean);
   const dispatch = useDispatch();
-  // const appState = useSelector(state => state);
-  const bd = "1px solid red";
+  const bd = "1px solid red"
+  const checkUserLogin = JSON.parse(sessionStorage.getItem("users"));
 
   const handleChange = e => {
     const target = e.target;
@@ -35,6 +33,7 @@ export default function Register() {
 
     try {
       // validate
+      const userExist = checkUserExist(users.email);
       const msg = setMessage(
         checkValidateRegisterForm(
           users,
@@ -42,7 +41,8 @@ export default function Register() {
           setLastNameErr,
           setEmailErr,
           setPasswordErr,
-          setPasswordAgainErr
+          setPasswordAgainErr,
+          userExist
         )
       );
 
@@ -52,11 +52,13 @@ export default function Register() {
 
       if (msg.payload === "Mật khẩu không trùng khớp") {
         isMessage = false;
-      } else if (msg.payload === "Đăng ký thành công") {
+      } else if (msg.payload === "Người dùng đã tồn tại") {
+        isMessage = false;
+      }else if (msg.payload === "Đăng ký thành công") {
         isMessage = true;
 
         const usersData = {
-          id: 2,
+          id: 5,
           firstName: users.firstName,
           lastName: users.lastName,
           email: users.email,
@@ -65,9 +67,7 @@ export default function Register() {
         };
 
         // add user
-        db.get("users")
-          .push(usersData)
-          .write();
+        addData("users", usersData);
       } else {
         return;
       }
@@ -76,30 +76,35 @@ export default function Register() {
     } catch (e) {
       console.log(e);
     }
+
+    function checkUserExist(email) {
+      return fetchData("users", { email: email });
+    };
   };
 
   return (
-    <section className="main-signin">
+    <React.Fragment>
+      {!checkUserLogin ? (<section className="main-signin">
       <div className="signin container">
-        <div className="breadcrumb">
-          <span>Trang chủ</span>
-          <span> / </span>
-          <span>Đăng ký</span>
-        </div>
+        <Breadcrumb breadcrumbItem="Register" />
         <div className="signin__sn">
           <div className="main-title-tl">
-            <h1 className="main-title-tl__tt detail__eff--left">{t("Đăng ký").toUpperCase()}</h1>
+            <h1 className="main-title-tl__tt detail__eff--left">
+              {t("Register").toUpperCase()}
+            </h1>
             <div className="main-title-tl__eff detail__eff--left">
               <img src="./images/titleleft-dark.png" alt="" />
             </div>
           </div>
           <div className="signin__node-sn">
-            <Link to="/login">{t("Đăng nhập").toUpperCase()}</Link>
+            <Link to="/login">{t("Login").toUpperCase()}</Link>
           </div>
         </div>
         <div className="signin__box-su">
           <div className="signin__box-sn">
-            <div className="signin__title">{t("Thông tin cá nhân").toUpperCase()}</div>
+            <div className="signin__title">
+              {t("Personal information").toUpperCase()}
+            </div>
             <div className="signin__ip-sn">
               <form onSubmit={handleSubmit}>
                 <div style={{ border: firstNameErr ? bd : "" }}>
@@ -108,7 +113,7 @@ export default function Register() {
                     name="firstName"
                     value={users.firstName || ""}
                     onChange={handleChange}
-                    placeholder={t("Họ")}
+                    placeholder={t("First name")}
                   />
                 </div>
                 <div style={{ border: lastNameErr ? bd : "" }}>
@@ -117,7 +122,7 @@ export default function Register() {
                     name="lastName"
                     value={users.lastName || ""}
                     onChange={handleChange}
-                    placeholder={t("Tên")}
+                    placeholder={t("Last name")}
                   />
                 </div>
                 <div style={{ border: emailErr ? bd : "" }}>
@@ -135,7 +140,7 @@ export default function Register() {
                     name="password"
                     value={users.password || ""}
                     onChange={handleChange}
-                    placeholder={t("Mật khẩu")}
+                    placeholder={t("Password")}
                   />
                 </div>
                 <div style={{ border: passwordAgainErr ? bd : "" }}>
@@ -144,15 +149,18 @@ export default function Register() {
                     name="passwordAgain"
                     value={users.passwordAgain || ""}
                     onChange={handleChange}
-                    placeholder={t("Nhập lại mật khẩu")}
+                    placeholder={t("Password again")}
                   />
                 </div>
-                <button className="signin__sm-sn">{t("Đăng ký").toUpperCase()}</button>
+                <button className="signin__sm-sn">
+                  {t("Register").toUpperCase()}
+                </button>
               </form>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </section>) : <Redirect to="/" />}
+    </React.Fragment>
   );
 }

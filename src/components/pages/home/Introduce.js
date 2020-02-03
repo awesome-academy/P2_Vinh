@@ -1,8 +1,8 @@
 import React from 'react';
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 export default function Introduce() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <section className="introduce"><img className="introduce__bg1" src="./images/background1.jpg" alt="" /><img className="introduce__bg2" src="./images/background1.jpg" alt="" />

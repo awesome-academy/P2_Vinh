@@ -12,7 +12,7 @@
   margin-top: 1rem;
 }
 
-.productR__sort div:first-child, .contact__map, .signin__receive-news div :first-child, .tabs .tab, .detail__pro-action > span > i, .detail__pro-action > span:not(:last-child), .detail__pro-action > span > i:not(:last-child), .detail__pro-color-dt > div:not(:last-child), .footer__icons-sm > span:not(:last-child) {
+.productR__sort div:first-child, .contact__map, .signin__receive-news div :first-child, .tabs .tab, .detail__pro-action > span > i, .detail__pro-action > span > i:not(:last-child), .detail__pro-action > span:not(:last-child), .detail__pro-color-dt > div:not(:last-child), .footer__icons-sm > span:not(:last-child) {
   margin-right: 1rem;
 }
 
@@ -41,7 +41,7 @@
   margin-bottom: 2rem;
 }
 
-.blog-detail__dt, .blog__bl, .about__us {
+.blog-detail__dt, .blog__bl, .about__us, .detail__more-info {
   margin-top: 3rem;
 }
 
@@ -50,7 +50,7 @@
   margin-bottom: 2rem;
 }
 
-.productR__pR, .detail__more-info, .footer__b, .footer__f, .main-footer, .main-others, .main-gallery, .new-product {
+.productR__pR, .footer__b, .footer__f, .main-footer, .main-others, .main-gallery, .new-product {
   margin-top: 6rem;
 }
 
@@ -158,7 +158,7 @@
   background: #e6ae48;
 }
 
-.tab label, .detail__amount > input, .detail__pro-select > select, .tag {
+.tab > label, .detail__amount > input, .detail__pro-select > select, .tag {
   padding: 5px 10px;
   outline: none;
   border: none;
@@ -168,7 +168,7 @@
   transition: all 0.3s;
   cursor: pointer;
 }
-.tab label:hover, .detail__amount > input:hover, .detail__pro-select > select:hover, .tag:hover {
+.tab > label:hover, .detail__amount > input:hover, .detail__pro-select > select:hover, .tag:hover {
   background: #e6ae48;
 }
 
@@ -178,11 +178,12 @@
 
 .message {
   position: fixed;
-  top: 5rem;
-  right: 3rem;
+  bottom: 5rem;
+  left: 3rem;
   z-index: 10;
   background-color: #e6ae48;
   color: #fff;
+  box-shadow: 0 5px 9px 0 #1f1f1f85;
 }
 
 a {
@@ -217,7 +218,6 @@ a:hover {
   border: 1px solid #ccccccbf;
 }
 .tag:hover {
-  background: #e6ae48;
   color: #000000;
 }
 
@@ -811,11 +811,18 @@ a {
 .detail__main-photo {
   max-width: 80%;
 }
+.detail__main-photo > div {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 13%);
+  cursor: zoom-in;
+}
 .detail__main-photo img {
   width: 100%;
 }
 .detail__photo {
-  max-width: 7rem;
+  width: 7rem;
+  cursor: pointer;
 }
 .detail__photo img {
   width: 100%;
@@ -828,7 +835,7 @@ a {
   justify-content: space-between;
   min-height: 50rem;
 }
-.detail__ar-top, .detail__ar-bottom {
+.detail__ar-bottom, .detail__ar-top {
   color: #e6ae48;
   position: absolute;
 }
@@ -857,30 +864,35 @@ a {
   align-items: flex-start;
   justify-content: center;
 }
-.detail__cl-orange {
-  width: 4rem;
-  height: 4rem;
-  background: #e6ae48;
-}
-.detail__cl-black {
-  width: 4rem;
-  height: 4rem;
-  background: #000000;
+.detail__pro-color-dt > label:not(:last-child) {
+  margin-right: 1rem;
 }
 .detail__cl-red {
   width: 4rem;
   height: 4rem;
-  background: #9c0000;
+  background: red;
+}
+.detail__cl-yellow {
+  width: 4rem;
+  height: 4rem;
+  background: yellow;
+}
+.detail__cl-blue {
+  width: 4rem;
+  height: 4rem;
+  background: blue;
 }
 .detail__pro-action {
   font-size: 1.4rem;
 }
 .detail__more-info {
+  padding-top: 1rem;
   position: relative;
   display: flex;
   flex-flow: row wrap;
   align-items: flex-start;
   justify-content: space-between;
+  min-height: 45rem;
 }
 .detail__more-photo {
   width: 30%;
@@ -900,17 +912,20 @@ a {
 .tabs .tab .content {
   position: absolute;
   background-color: white;
-  left: 0px;
+  left: 0;
   top: 4rem;
   width: 70%;
   height: 100%;
+  padding: 1rem;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .checkboxtab {
   display: none;
 }
 
-.tab label {
+.tab > label {
   cursor: pointer;
 }
 
@@ -921,6 +936,30 @@ a {
 
 .checkboxtab:checked ~ .content {
   z-index: 1;
+}
+
+input[name=color] {
+  display: none;
+}
+
+input[name=color]:checked + label {
+  outline: 2px #f7d496 solid;
+}
+
+label[class^=star] {
+  cursor: pointer;
+}
+
+.star {
+  color: #dedbdb !important;
+}
+
+.star:hover {
+  background: none;
+}
+
+.checked {
+  color: yellow !important;
 }
 
 .about__us {
