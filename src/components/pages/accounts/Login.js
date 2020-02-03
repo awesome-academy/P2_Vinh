@@ -1,26 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { setMessage } from "../../../actions/message.action";
 import { setUserLogin } from "../../../actions/user.action";
 import { fetchData } from '../../../mixins/fetchData';
 import { closeMessage } from "../../closeMessage";
 import { checkValidateLoginForm } from "../../../mixins/checkValidateForm";
-import low from "lowdb";
-import LocalStorage from "lowdb/adapters/LocalStorage";
-
-const adapter = new LocalStorage("db");
-const db = low(adapter);
+import Breadcrumb from '../../Breadcrumb';
 
 export default function Login({ history }) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [users, setUsers] = useState(Object);
   const [userData, setUserData] = useState(Object);
   const [emailErr, setEmailErr] = useState(Boolean);
   const [passwordErr, setPasswordErr] = useState(Boolean);
   const dispatch = useDispatch();
   const bd = "1px solid red";
+  const checkUserLogin = JSON.parse(sessionStorage.getItem("users"));
 
   useEffect(() => {
     setUserData(fetchData('users'));
@@ -71,27 +68,23 @@ export default function Login({ history }) {
   };
 
   return (
-    <>
-      <section className="main-signin">
+    <React.Fragment>
+        {!checkUserLogin ? (<section className="main-signin">
         <div className="signin container">
-          <div className="breadcrumb">
-            <span>Trang chủ</span>
-            <span> / </span>
-            <span>Đăng nhập</span>
-          </div>
+          <Breadcrumb breadcrumbItem="Login" />
           <div className="signin__sn">
             <div className="main-title-tl">
-              <h1 className="main-title-tl__tt detail__eff--left">{t("Đăng nhập").toUpperCase()}</h1>
+              <h1 className="main-title-tl__tt detail__eff--left">{t("Login").toUpperCase()}</h1>
               <div className="main-title-tl__eff detail__eff--left">
                 <img src="./images/titleleft-dark.png" alt="" />
               </div>
             </div>
             <div className="signin__node-sn">
-              <Link to="/register">{t("Đăng ký").toUpperCase()}</Link>
+              <Link to="/register">{t("Register").toUpperCase()}</Link>
             </div>
           </div>
           <div className="signin__box-sn">
-            <div className="signin__title">{t("Khách hàng đăng nhập").toUpperCase()}</div>
+            <div className="signin__title">{t("Customer login").toUpperCase()}</div>
             <div className="signin__ip-sn">
               <form onSubmit={handleSubmit}>
                 <div style={{ border: emailErr ? bd : "" }}>
@@ -107,17 +100,17 @@ export default function Login({ history }) {
                   <input
                     type="password"
                     name="password"
-                    placeholder={t("Mật khẩu")}
+                    placeholder={t("Password")}
                     value={users.password || ""}
                     onChange={handleChange}
                   />
                 </div>
-                <button className="signin__sm-sn">{t("Đăng nhập").toUpperCase()}</button>
+                <button className="signin__sm-sn">{t("Login").toUpperCase()}</button>
               </form>
             </div>
           </div>
         </div>
-      </section>
-    </>
+      </section>) : <Redirect to="/" />}
+    </React.Fragment>
   );
 }

@@ -1,8 +1,10 @@
 import React from "react";
-import { useTranslation, Trans } from "react-i18next";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { urlPretty } from '../../../mixins/urlPretty';
 
 export default function NewProduct({ products }) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const newProducts = [...products];
 
   newProducts.sort((x, y) => {
@@ -29,7 +31,9 @@ export default function NewProduct({ products }) {
                 <div className="product__photo">
                   <img src={`./images/${item.images[0]}`} alt="" />
                 </div>
-                <div className="product__title">{item.title}</div>
+                <div className="product__title">
+                  <Link to={`${urlPretty(item.title)}/${item.id}`}>{item.title}</Link>
+                </div>
                 <div className="product__price">
                   <span className="product__price-sale">{item.price}</span>
                   <span> - </span>

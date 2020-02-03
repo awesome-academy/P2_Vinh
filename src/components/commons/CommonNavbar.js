@@ -1,37 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setUserLogin } from "../.././actions/user.action";
-import { useTranslation, Trans } from "react-i18next";
-import low from "lowdb";
-import LocalStorage from "lowdb/adapters/LocalStorage";
-
-const adapter = new LocalStorage("db");
-const db = low(adapter);
+import { useTranslation } from "react-i18next";
+import { fetchData } from "../../mixins/fetchData";
 
 export default function CommonNavbar() {
-  const [ user, setUser ] = useState(Object);
   const { t, i18n } = useTranslation();
   const appState = useSelector(state => state);
   const dispatch = useDispatch();
-  const checkUserLogin = JSON.parse(sessionStorage.getItem('users'));
+  const checkUserLogin = JSON.parse(sessionStorage.getItem("users"));
 
   useEffect(() => {
     if (checkUserLogin) {
-      const res = db.get('users').find({ id: checkUserLogin.id }).value();
+      const res = fetchData("users", { id: checkUserLogin.id });
       const { id, email } = res;
 
       dispatch(setUserLogin({ id, email }));
-      setUser(res);
-    } else {
-      setUser(null);
     }
-  }, []);
+  }, [dispatch]);
 
   const handleLogout = e => {
     e.preventDefault();
     dispatch(setUserLogin(null));
-    setUser(null);
 
     sessionStorage.removeItem("users");
   };
@@ -81,13 +72,23 @@ export default function CommonNavbar() {
             onClick={() => handleChangeLanguage("en")}
             className="navbar-top__main-navbar__narvar__items cursor"
           >
-            <img src="./images/flags/en.png" width="20px" height="10px" alt="flag-en" />
+            <img
+              src="http://localhost:3000/images/flags/en.png"
+              width="20px"
+              height="10px"
+              alt="flag-en"
+            />
           </li>
           <li
             onClick={() => handleChangeLanguage("vi")}
             className="navbar-top__main-navbar__narvar__items cursor"
           >
-            <img src="./images/flags/vi.png" width="20px" height="10px" alt="flag-vi" />
+            <img
+              src="http://localhost:3000/images/flags/vi.png"
+              width="20px"
+              height="10px"
+              alt="flag-vi"
+            />
           </li>
         </ul>
         <div className="navbar-top__search">

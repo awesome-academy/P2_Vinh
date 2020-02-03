@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useTranslation, Trans } from "react-i18next";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { fetchData } from '../../mixins/fetchData';
-import low from "lowdb";
-import LocalStorage from "lowdb/adapters/LocalStorage";
-
-const adapter = new LocalStorage("db");
-const db = low(adapter);
 
 export default function Navbar() {
   const [ data, setData ] = useState(Array);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     setData(Object.entries(fetchData("categories")));
@@ -25,7 +21,7 @@ export default function Navbar() {
       <nav className="navbar">
         <div className="navbar__nav container">
           <ul className="navbar__nav__menu">
-            <li className="navbar__nav__menu__items"><a href="#0"><img src="./images/Logo.png" alt="logo" /></a></li>
+            <li className="navbar__nav__menu__items"><Link to="/"><img src="http://localhost:3000/images/Logo.png" alt="logo" /></Link></li>
             <li className="navbar__nav__menu__items"><a href="#0">{t("Home").toUpperCase()}</a>
             </li>
             <li className="navbar__nav__menu__items"><a href="#0">{t("Red wine").toUpperCase()}</a>

@@ -4,7 +4,8 @@ export const checkValidateRegisterForm = (
   setLastNameErr,
   setEmailErr,
   setPasswordErr,
-  setPasswordAgainErr
+  setPasswordAgainErr,
+  userExist
 ) => {
   if (
     users.firstName === "" ||
@@ -28,6 +29,9 @@ export const checkValidateRegisterForm = (
 
   if (users.email === "" || users.email === null || users.email === undefined) {
     setEmailErr(true);
+  } else if (userExist) {
+    setEmailErr(false);
+    return "Người dùng đã tồn tại";
   } else {
     setEmailErr(false);
   }

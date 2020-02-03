@@ -60,7 +60,20 @@ i18n
           "Chivas wine": "Chivas wine",
           "Alcohol hundred years": "Alcohol hundred years",
           "Alcohol thousand years": "Alcohol thousand years",
-          "Champagne": "Champagne"
+          "Champagne": "Champagne",
+          "Rated points": "Rated points",
+          "Color": "Color",
+          "Size": "Size",
+          "Amounts": "Amounts",
+          "Love": "Love",
+          "Compare": "Compare",
+          "Descriptions": "Descriptions",
+          "Highlight": "Highlight",
+          "Evaluate": "Evaluate",
+          "Your evaluate": "Your evaluate",
+          "Login to evaluate": "Log in to evaluate",
+          "There are no reviews yet": "There are no reviews yet",
+          "You need to select this section": "You need to select this section",
         }
       },
       vi: {
@@ -115,7 +128,20 @@ i18n
           "Chivas wine": "Rượu Chivas",
           "Alcohol hundred years": "Rượu trăm năm",
           "Alcohol thousand yearsyears": "Rượu ngàn năm",
-          "Champagne": "Rượu sâm banh"
+          "Champagne": "Rượu sâm banh",
+          "Rated points": "Lượt đánh giá",
+          "Color": "Màu sắc",
+          "Size": "Kích thước",
+          "Amounts": "Số lượng",
+          "Love": "Yêu thích",
+          "Compare": "So sánh",
+          "Descriptions": "Mô tả",
+          "Highlight": "Đặc điểm nổi bật",
+          "Evaluate": "Đặc điểm",
+          "Your evaluate": "Đánh giá của bạn",
+          "Login to evaluate": "Đăng nhập để đánh giá",
+          "There are no reviews yet": "Chưa có đánh giá nào",
+          "You need to select this section": "Bạn cần chọn phần này",
         }
       }
     },

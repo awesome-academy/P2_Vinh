@@ -1,13 +1,13 @@
 import React from 'react';
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <footer className="main-footer">
       <div className="footer container">
-        <div className="footer__sponsor"><img src="./images/sponsors.png" alt="" /></div>
+        <div className="footer__sponsor"><img src="http://localhost:3000/images/sponsors.png" alt="" /></div>
         <div className="footer__f">
           <div className="footer__t">
             <div className="footer__ti">
@@ -49,7 +49,7 @@ export default function Footer() {
           </div>
           <div className="footer__b">
             <div className="footer__copyright">Copyright 2008-2019 DKT Technology JSC</div>
-            <div className="footer__icons"><img src="./images/icons-footer.png" alt="" /></div>
+            <div className="footer__icons"><img src="http://localhost:3000/images/icons-footer.png" alt="" /></div>
           </div>
         </div>
       </div>

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { useTranslation, Trans } from "react-i18next";
+import React from 'react';
+import { useTranslation } from "react-i18next";
 
 export default function Introduce({ products }) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const newProducts = [...products];
 
   newProducts.sort((x, y) => {
