@@ -7,7 +7,18 @@ const db = low(adapter);
 export const fetchData = (option, id) => {
   let res = null;
   if (id) {
-    res = db.get(option).find(id).value();
+    res = db.get(option).chain().find(id).value();
+  } else {
+    res = db.get(option).value();
+  }
+
+  return res;
+}
+
+export const fetchProductOfCart = (option, id) => {
+  let res = null;
+  if (id) {
+    res = db.get(option).chain().filter(id).value();
   } else {
     res = db.get(option).value();
   }
@@ -23,6 +34,12 @@ export const updateData = (option, id, data) => {
 
 export const addData = (option, data) => {
   const res = db.get(option).push(data).write();
+
+  return res;
+}
+
+export const removeData = (option, id) => {
+  const res = db.get(option).remove(id).write();
 
   return res;
 }

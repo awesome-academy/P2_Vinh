@@ -5,6 +5,7 @@ import Home from './components/pages/home';
 import Login from './components/pages/accounts/Login';
 import Register from './components/pages/accounts/Register';
 import Detail from './components/pages/details';
+import Cart from './components/pages/cart';
 
 export default function Routes() {
 	return (
@@ -13,6 +14,7 @@ export default function Routes() {
 	      <Route path='/login' component={Login} />
 	      <Route path='/register' component={Register} />
 	      <Route path='/:wineName/:id' component={Detail} />
+	      <Route path='/cart' component={Cart} />
 	    </Switch>
 	)
 }

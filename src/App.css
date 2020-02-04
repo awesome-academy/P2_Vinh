@@ -37,7 +37,7 @@
   margin-bottom: 1rem;
 }
 
-.main-popup .popup__title, .main-popup .popup__descriptions, .not-found, .productC__info > div:not(:last-child), .productR__sort-pagination, .productR__aside > div:not(:last-child), .signin__title, .signin__msg, .signin__ip-sn form div, .signin__sn, .blog-detail__comment form > input:not(:last-child), .blog-detail__cm-title, .blog-detail__news, .blog-detail__title, .blog-detail__new-items:not(:last-child), .blog__bl > .others__news-items, .others__news-photo {
+.main-popup .popup__title, .main-popup .popup__descriptions, .not-found, .productC__info > div:not(:last-child), .productR__sort-pagination, .productR__aside > div:not(:last-child), .signin__msg, .signin__title, .signin__ip-sn form div, .signin__sn, .blog-detail__comment form > input:not(:last-child), .blog-detail__cm-title, .blog-detail__news, .blog-detail__title, .blog-detail__new-items:not(:last-child), .blog__bl > .others__news-items, .others__news-photo {
   margin-bottom: 2rem;
 }
 
@@ -144,7 +144,7 @@
   font-size: 30rem;
 }
 
-.main-popup .popup__sm-b, .cart__actions > button, .productC__add-to-cart, .signin__node-sn, .signin__sm-sn, .blog-detail__send, .detail__pro-add-to-cart, .footer__button-sm, .product__add-to-cart, .highlight__high__pro__info__add-to-card, .introduce__intro__show-more {
+.main-popup .popup__sm-b, .cart__actions > button, .productC__add-to-cart, .signin__node-sm, .signin__node-sn, .signin__sm-sn, .blog-detail__send, .detail__pro-add-to-cart, .footer__button-sm, .product__add-to-cart, .highlight__high__pro__info__add-to-card, .introduce__intro__show-more {
   border: none;
   background: #000;
   color: #fff;
@@ -154,7 +154,7 @@
   transition: all 0.3s;
   height: 27px;
 }
-.main-popup .popup__sm-b:hover, .cart__actions > button:hover, .productC__add-to-cart:hover, .signin__node-sn:hover, .signin__sm-sn:hover, .blog-detail__send:hover, .detail__pro-add-to-cart:hover, .footer__button-sm:hover, .product__add-to-cart:hover, .highlight__high__pro__info__add-to-card:hover, .introduce__intro__show-more:hover {
+.main-popup .popup__sm-b:hover, .cart__actions > button:hover, .productC__add-to-cart:hover, .signin__node-sm:hover, .signin__node-sn:hover, .signin__sm-sn:hover, .blog-detail__send:hover, .detail__pro-add-to-cart:hover, .footer__button-sm:hover, .product__add-to-cart:hover, .highlight__high__pro__info__add-to-card:hover, .introduce__intro__show-more:hover {
   background: #e6ae48;
 }
 
@@ -184,6 +184,14 @@
   background-color: #e6ae48;
   color: #fff;
   box-shadow: 0 5px 9px 0 #1f1f1f85;
+}
+
+select:hover, input:hover {
+  background: #fff !important;
+}
+
+input {
+  border: 1px solid gray !important;
 }
 
 a {
@@ -369,6 +377,7 @@ a {
   justify-content: space-between;
 }
 .navbar__nav__menu__items {
+  padding: 2rem;
   position: relative;
 }
 .navbar__nav__menu__items:first-child a > img {
@@ -384,7 +393,7 @@ a {
 .navbar__nav__menu__items:hover .navbar__nav__menu__second {
   display: block;
   position: absolute;
-  top: 2rem;
+  top: 5rem;
   left: -30rem;
   width: 70rem;
   background: #ffffff;
@@ -882,6 +891,9 @@ a {
   height: 4rem;
   background: blue;
 }
+.detail__pro-select > select {
+  border: 1px solid gray;
+}
 .detail__pro-action {
   font-size: 1.4rem;
 }
@@ -1054,6 +1066,11 @@ label[class^=star] {
   text-decoration: none;
   color: #fff;
 }
+.signin__node-sm {
+  text-decoration: none !important;
+  color: #fff;
+  font-size: 1.4rem;
+}
 .signin__receive-news {
   display: flex;
   flex-flow: row wrap;
@@ -1190,6 +1207,11 @@ label[class^=star] {
   color: #6b6b6bbf;
 }
 
+i[class="far fa-trash-alt"] {
+  cursor: pointer;
+  color: red;
+}
+
 .cart__photo {
   max-width: 7rem;
 }
@@ -1202,7 +1224,7 @@ label[class^=star] {
 }
 .cart table, .cart tr, .cart td, .cart th {
   text-align: center;
-  border: 1px solid #5e5f5f;
+  border: 1px solid #e6e6e6;
   border-collapse: collapse;
 }
 .cart__actions {

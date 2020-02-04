@@ -10,15 +10,16 @@ export default function CommonNavbar() {
   const appState = useSelector(state => state);
   const dispatch = useDispatch();
   const checkUserLogin = JSON.parse(sessionStorage.getItem("users"));
+  const userId = checkUserLogin ? checkUserLogin.id : null;
 
   useEffect(() => {
-    if (checkUserLogin) {
-      const res = fetchData("users", { id: checkUserLogin.id });
+    if (userId) {
+      const res = fetchData("users", { id: userId });
       const { id, email } = res;
 
       dispatch(setUserLogin({ id, email }));
     }
-  }, [dispatch]);
+  }, [dispatch, userId]);
 
   const handleLogout = e => {
     e.preventDefault();
@@ -48,14 +49,15 @@ export default function CommonNavbar() {
           </li>
           <li className="navbar-top__main-navbar__narvar__items">-</li>
           <li className="navbar-top__main-navbar__narvar__items">
-            <Link to="">{t("Cart")}</Link>
+            <Link to="/cart">{t("Cart")}</Link>
           </li>
           <li className="navbar-top__main-navbar__narvar__items">-</li>
           {appState.users.data ? (
-            <li className="navbar-top__main-navbar__narvar__items">
-              <a href="#0" onClick={handleLogout}>
-                {t("Logout")}
-              </a>
+            <li
+              className="navbar-top__main-navbar__narvar__items"
+              onClick={handleLogout}
+            >
+              <Link to="/login">{t("Logout")}</Link>
             </li>
           ) : (
             <>

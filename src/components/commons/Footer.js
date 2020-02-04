@@ -49,7 +49,6 @@ export default function Footer() {
           </div>
           <div className="footer__b">
             <div className="footer__copyright">Copyright 2008-2019 DKT Technology JSC</div>
-            <div className="footer__icons"><img src="http://localhost:3000/images/icons-footer.png" alt="" /></div>
           </div>
         </div>
       </div>
