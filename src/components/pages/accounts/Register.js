@@ -58,7 +58,7 @@ export default function Register() {
         isMessage = true;
 
         const usersData = {
-          id: 5,
+          id: '_' + Math.random().toString(36).substr(2, 9),
           firstName: users.firstName,
           lastName: users.lastName,
           email: users.email,
