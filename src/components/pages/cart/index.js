@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "../../../actions/cart.action";
 import { useTranslation } from "react-i18next";
@@ -155,7 +156,14 @@ export default function Cart({ history }, props) {
             </table>
           </div>
           <div className="cart__actions">
-            <div style={{ marginBottom: "2rem" }}>Tổng tiền: {total}$</div>
+            <div style={{ marginBottom: "2rem", fontSize: "2rem" }}>{t("Total")}: {total}$</div>
+            <Link
+              to={`/checkout`}
+              className="signin__node-sm"
+              style={{ marginRight: "1rem" }}
+            >
+              {t("Checkout")}
+            </Link>
             <button
               onClick={handleRedirectToHome}
               className="signin__node-sm"
