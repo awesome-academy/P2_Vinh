@@ -15,6 +15,7 @@ export default function Register() {
   const [firstNameErr, setFirstNameErr] = useState(Boolean);
   const [lastNameErr, setLastNameErr] = useState(Boolean);
   const [emailErr, setEmailErr] = useState(Boolean);
+  const [addressErr, setAddressErr] = useState(Boolean);
   const [passwordErr, setPasswordErr] = useState(Boolean);
   const [passwordAgainErr, setPasswordAgainErr] = useState(Boolean);
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ export default function Register() {
           setFirstNameErr,
           setLastNameErr,
           setEmailErr,
+          setAddressErr,
           setPasswordErr,
           setPasswordAgainErr,
           userExist
@@ -62,6 +64,7 @@ export default function Register() {
           firstName: users.firstName,
           lastName: users.lastName,
           email: users.email,
+          address: users.address,
           password: users.password,
           role: 0
         };
@@ -131,7 +134,16 @@ export default function Register() {
                     name="email"
                     value={users.email || ""}
                     onChange={handleChange}
-                    placeholder="Email..."
+                    placeholder="Email"
+                  />
+                </div>
+                <div style={{ border: addressErr ? bd : "" }}>
+                  <input
+                    type="text"
+                    name="address"
+                    value={users.address || ""}
+                    onChange={handleChange}
+                    placeholder={t("Address")}
                   />
                 </div>
                 <div style={{ border: passwordErr ? bd : "" }}>

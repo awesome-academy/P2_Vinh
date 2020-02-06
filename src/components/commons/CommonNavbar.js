@@ -41,7 +41,7 @@ export default function CommonNavbar() {
           </li>
           <li className="navbar-top__main-navbar__narvar__items">-</li>
           <li className="navbar-top__main-navbar__narvar__items">
-            <Link to="">{t("Order status")}</Link>
+            <Link to="/purchase">{t("Order status")}</Link>
           </li>
           <li className="navbar-top__main-navbar__narvar__items">-</li>
           <li className="navbar-top__main-navbar__narvar__items">

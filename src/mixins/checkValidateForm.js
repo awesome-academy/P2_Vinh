@@ -3,6 +3,7 @@ export const checkValidateRegisterForm = (
   setFirstNameErr,
   setLastNameErr,
   setEmailErr,
+  setAddressErr,
   setPasswordErr,
   setPasswordAgainErr,
   userExist
@@ -34,6 +35,15 @@ export const checkValidateRegisterForm = (
     return "Người dùng đã tồn tại";
   } else {
     setEmailErr(false);
+  }
+
+  if (users.address === "" || users.address === null || users.address === undefined) {
+    setAddressErr(true);
+  } else if (userExist) {
+    setAddressErr(false);
+    return "Chưa nhập địa chỉ";
+  } else {
+    setAddressErr(false);
   }
 
   if (

@@ -47,7 +47,7 @@ export default function NewProduct({ products }) {
                   <img src={`./images/${item.images[0]}`} alt="" />
                 </div>
                 <div className="product__title">
-                  <Link to={`${urlPretty(item.title)}/${item.id}`}>
+                  <Link to={`/product/${urlPretty(item.title)}/${item.id}`}>
                     {item.title}
                   </Link>
                 </div>
