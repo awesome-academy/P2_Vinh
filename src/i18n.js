@@ -116,7 +116,12 @@ i18n
           "Delivered": "Delivered",
           "Detail": "Detail",
           "Orders details": "Orders details",
-          "Back": "Back"
+          "Back": "Back",
+          "Users management": "Users management",
+          "Categories management": "Categories management",
+          "Products management": "Products management",
+          "Dashboard": "Dashboard",
+          "Unknown": "Unknown"
         }
       },
       vi: {
@@ -227,7 +232,12 @@ i18n
           "Delivered": "Đã giao hàng",
           "Detail": "Xem chi tiết",
           "Orders details": "Chi tiết đơn hàng",
-          "Back": "Trở lại"
+          "Back": "Trở lại",
+          "Users management": "Quản lý người dùng",
+          "Categories management": "Quản lý chuyên mục",
+          "Products management": "Quản lý sản phẩm",
+          "Dashboard": "Bảng điều khiển",
+          "Unknown": "Chưa rõ"
         }
       }
     },

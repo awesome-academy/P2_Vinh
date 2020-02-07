@@ -200,6 +200,10 @@
   font-weight: bold;
 }
 
+.f-weight-lighter {
+  font-weight: lighter;
+}
+
 .box-status-flow {
   text-align: center;
   margin-right: -6rem;
@@ -216,6 +220,7 @@
   background-color: gray;
   color: #fff;
   border-radius: 5px;
+  font-size: 1.3rem;
 }
 .box-status-flow .status-flow .status-item {
   background-color: gray;
@@ -230,8 +235,20 @@
   margin-right: 8rem;
 }
 
+.message-auth {
+  background-color: #dd4343;
+  padding: 2rem;
+  text-align: center;
+  color: #fff;
+  margin: 3rem !important;
+}
+
 .cursor {
   cursor: pointer;
+}
+
+input[class="border border-white rounded-pill ml-1 p-1"] {
+  border-radius: 10px;
 }
 
 .message {

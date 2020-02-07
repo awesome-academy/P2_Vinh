@@ -9,6 +9,8 @@ import Cart from "./components/pages/cart";
 import Checkout from "./components/pages/checkout";
 import Orders from "./components/pages/orders";
 import OrdersDetails from "./components/pages/ordersDetails";
+import Admin from "./components/pages/admin";
+import WithAuth from "./WithAuth";
 
 export default function Routes() {
   return (
@@ -21,6 +23,7 @@ export default function Routes() {
       <Route path="/checkout" component={Checkout} />
       <Route path="/purchase" component={Orders} />
       <Route path="/orders-details/:id" component={OrdersDetails} />
+      <Route path="/admin" component={() => WithAuth(Admin)} />
     </Switch>
   );
 }

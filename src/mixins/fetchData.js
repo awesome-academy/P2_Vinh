@@ -33,6 +33,20 @@ export const fetchProductOfCart = (option, id) => {
 
   return res;
 };
+export const fetchAllData = (option, id) => {
+  let res = null;
+  if (id) {
+    res = db
+      .get(option)
+      .chain()
+      .filter(id)
+      .value();
+  } else {
+    res = db.get(option).value();
+  }
+
+  return res;
+};
 
 export const removeCart = () => {
   db.set("cart", []).write();
