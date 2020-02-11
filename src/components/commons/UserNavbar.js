@@ -24,8 +24,8 @@ export default function CommonNavbar() {
   const handleLogout = e => {
     e.preventDefault();
     dispatch(setUserLogin(null));
-
     sessionStorage.removeItem("users");
+    window.location.href = "/login";
   };
 
   const handleChangeLanguage = lng => {
@@ -36,6 +36,10 @@ export default function CommonNavbar() {
     <nav className="navbar-top">
       <div className="navbar-top__main-navbar container">
         <ul className="navbar-top__main-navbar__narvar">
+          <li className="navbar-top__main-navbar__narvar__items">
+            <Link to="/">{t("Home")}</Link>
+          </li>
+          <li className="navbar-top__main-navbar__narvar__items">-</li>
           <li className="navbar-top__main-navbar__narvar__items">
             <Link to="">{t("My account")}</Link>
           </li>
@@ -52,12 +56,19 @@ export default function CommonNavbar() {
             <Link to="/cart">{t("Cart")}</Link>
           </li>
           <li className="navbar-top__main-navbar__narvar__items">-</li>
+          {appState.users.role === 1 && (
+            <>
+              <li className="navbar-top__main-navbar__narvar__items">
+                <Link to="/admin">{t("Admin")}</Link>
+              </li>
+              <li className="navbar-top__main-navbar__narvar__items">-</li>
+            </>
+          )}
           {appState.users.data ? (
             <li
               className="navbar-top__main-navbar__narvar__items"
-              onClick={handleLogout}
             >
-              <Link to="/login">{t("Logout")}</Link>
+              <a onClick={handleLogout} href="/login">{t("Logout")}</a>
             </li>
           ) : (
             <>

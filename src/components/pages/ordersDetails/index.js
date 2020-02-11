@@ -46,16 +46,12 @@ export default function OrdersDetails({ match }) {
             className="orders-details container"
             style={{ marginTop: "5rem", marginBottom: "5rem" }}
           >
-            <hr />
-            <hr />
             <div className="box-status-flow">
               <StatusFlow
                 status={product.status}
                 createDate={product.createDate}
               />
             </div>
-            <hr />
-            <hr />
           </div>
           <hr />
           <div className="cart__b-cart">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Link, Redirect } from "react-router-dom";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
@@ -50,6 +50,10 @@ export default function Checkout({ history }, props) {
     }
   }, [dispatch, userId]);
 
+  const list = useMemo(() => {
+    return appState.cart.data;
+  }, [appState.cart.data]);
+
   if (appState.cart.data.length === 0) {
     return (
       <>
@@ -76,7 +80,7 @@ export default function Checkout({ history }, props) {
           status: 1,
           address: address,
           userId: item.userId,
-          createDate: moment(timeNow).format("DD-MM-YYYY HH:mm")
+          createDate: moment(timeNow).format("YYYY-MM-DD")
         };
 
         addData("orders", orderData);
@@ -108,7 +112,7 @@ export default function Checkout({ history }, props) {
           <div className="cart__b-cart">
             <table>
               <HeaderContentCheckout />
-              <BodyContentCheckout listCart={appState.cart.data} />
+              <BodyContentCheckout listCart={list} />
             </table>
           </div>
           <div className="cart__actions">

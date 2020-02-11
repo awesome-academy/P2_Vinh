@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-import CommonNavbar from "./CommonNavbar";
+import WithAuthNavbar from "./WithAuthNavbar";
 import Navbar from "./Navbar";
 import { fetchData } from "../../mixins/fetchData";
 
 export default function Header() {
+  const appState = useSelector(state => state);
   const [highlightNamePro, setPighlightNamePro] = useState(Array);
   const location = useLocation();
 
@@ -39,7 +41,7 @@ export default function Header() {
         className="header"
         style={{ height: location.pathname === "/" ? null : "3rem" }}
       >
-        <CommonNavbar />
+        <WithAuthNavbar />
         {location.pathname === "/" ? (
           <header
             className="header"
@@ -57,7 +59,7 @@ export default function Header() {
           </header>
         ) : null}
       </header>
-      <Navbar />
+      {appState.users.role === 1 && location.pathname === "/" ? (<Navbar />) : appState.users.role === 0 ? (<Navbar />) : null}
     </>
   );
 }

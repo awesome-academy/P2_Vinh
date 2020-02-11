@@ -156,7 +156,9 @@ export default function Cart({ history }, props) {
             </table>
           </div>
           <div className="cart__actions">
-            <div style={{ marginBottom: "2rem", fontSize: "2rem" }}>{t("Total")}: {total}$</div>
+            <div style={{ marginBottom: "2rem", fontSize: "2rem" }}>
+              {t("Total")}: {total}$
+            </div>
             <Link
               to={`/checkout`}
               className="signin__node-sm"
